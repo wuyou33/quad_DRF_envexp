@@ -15,10 +15,7 @@ param.k = 1.9035e-6;
 param.t = 1.9202951e-8;
 param.gamma = 1.918988e-3;
 param.g = 9.8124;
-param.Kl = -6.4929e-6;
-param.Klc = 1.9931e-6;
-param.Km = 3.9568e-6;
-param.Kmc = 2.7843e-7;
+
 %% calculate the trim point
 u1_u2 = [1.0:0.1:1.5];
 N = length(u1_u2);
