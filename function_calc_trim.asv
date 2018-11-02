@@ -1,0 +1,16 @@
+function Y = function_calc_trim(X,para,gamma)
+
+p = X(1);
+q = X(2);
+r = X(3);
+u1 = X(4);
+u2 = X(5);
+
+Ix = para.Iv(1,1); Iy = para.Iv(2,2); Iz = para.Iv(3,3);Ip = para.Ip(3,3);
+k = para.k; b = para.b; l = para.l;t = para.t; m = para.m; 
+
+Y = zeros(4,1);
+Y(1) = (Iy-Iz)*p*r - Ip*q*(u1+u2) + k*b*(u1^2-u2^2);
+Y(2) = (Iz-Ix)*p*r + Ip*q*(u1+u2) + k*l*(u1^2-u2^2);
+Y(3) = -gamma*r + t*(u1*2+u2^2);
+end
