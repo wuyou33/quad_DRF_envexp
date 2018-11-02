@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.6479"
+    ComputedModelVersion    "1.6484"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -120,9 +120,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "samsun"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Nov 01 21:24:56 2018"
-  RTWModifiedTimeStamp	  463008294
-  ModelVersionFormat	  "1.%<AutoIncrement:6479>"
+  LastModifiedDate	  "Fri Nov 02 11:45:34 2018"
+  RTWModifiedTimeStamp	  463059908
+  ModelVersionFormat	  "1.%<AutoIncrement:6484>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1487,7 +1487,7 @@ Model {
       SID		      "2948"
       Position		      [375, 90, 430, 120]
       ZOrder		      395
-      Value		      "5"
+      Value		      "1.2"
     }
     Block {
       BlockType		      Constant
@@ -1610,7 +1610,7 @@ Model {
       "098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863]),'DisplayLayoutDimensions',[3 1],'Di"
       "splayContentCache',[]),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutoscale"
       "','XY'),extmgr.Configuration('Tools','Measurements',true,'Version','2018a')),'Version','2018a','Position',[775 8"
-      "8 466 590],'VisibleAtModelOpen','on')"
+      "8 466 590])"
       NumInputPorts	      "3"
       Floating		      off
     }
@@ -1777,7 +1777,7 @@ Model {
 	}
 	Block {
 	  BlockType		  Inport
-	  Name			  "qcmd"
+	  Name			  "ratio"
 	  SID			  "2946::23"
 	  Position		  [20, 171, 40, 189]
 	  ZOrder		  14
@@ -1852,7 +1852,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  87
-	  SrcBlock		  "qcmd"
+	  SrcBlock		  "ratio"
 	  SrcPort		  1
 	  DstBlock		  " SFunction "
 	  DstPort		  3
@@ -2514,12 +2514,12 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function U = control_DRF_lqr(X,t,qcmd,lqr_data,saturate)\n\nU = zeros(2,1);\n% \n[~,j] = min(abs("
-      "lqr_data.X(2,:)-qcmd));\n\nk = j;\n\nK = lqr_data.K(:,:,k);\np0 = lqr_data.X(1,k);\nq0 = lqr_data.X(2,k);\nr0 = "
-      "lqr_data.X(3,k);\n\nX_ref = [p0 q0 r0]';\nUfb = K*(X_ref - X);\n% Ufb = zeros(2,1);\n\nu1 = lqr_data.X(4,k) + Uf"
-      "b(1);\nu2 = lqr_data.X(5,k) + Ufb(2);\n\nu1max = inf;\nu2max = inf;\nif saturate == 1\n    u1max = lqr_data.X(4,"
-      "j); \n%     u1 = u1max;  % front rotor jammed!!\n%     u2max = lqr_data.X(5,j);\nend\n\nU(1) = min(u1max,u1);\nU"
-      "(2) = min(u2max,u2);\nend"
+      script		      "function U = control_DRF_lqr(X,t,ratio,lqr_data,saturate)\n\nU = zeros(2,1);\n% \n[~,j] = min(abs"
+      "(lqr_data.X(4,:)./lqr_data.X(5,:)-ratio));\n\nk = j;\n\nK = lqr_data.K(:,:,k);\np0 = lqr_data.X(1,k);\nq0 = lqr_"
+      "data.X(2,k);\nr0 = lqr_data.X(3,k);\n\nX_ref = [p0 q0 r0]';\nUfb = K*(X_ref - X);\n% Ufb = zeros(2,1);\n\nu1 = l"
+      "qr_data.X(4,k) + Ufb(1);\nu2 = lqr_data.X(5,k) + Ufb(2);\n\nu1max = inf;\nu2max = inf;\nif saturate == 1\n    u1"
+      "max = lqr_data.X(4,j); \n%     u1 = u1max;  % front rotor jammed!!\n%     u2max = lqr_data.X(5,j);\nend\n\nU(1) "
+      "= min(u1max,u1);\nU(2) = min(u2max,u2);\nend"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -2596,7 +2596,7 @@ Stateflow {
   data {
     id			    17
     ssIdNumber		    7
-    name		    "qcmd"
+    name		    "ratio"
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -2717,9 +2717,6 @@ Stateflow {
     screen		    [1 1 3600 1200 1.180555555555556]
     treeNode		    [0 24 0 0]
     viewObj		    23
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
