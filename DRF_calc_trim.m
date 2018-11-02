@@ -21,6 +21,7 @@ param.Km = 3.9568e-6;
 param.Kmc = 2.7843e-7;
 %% calculate the trim point
 u1_u2 = [1.0:0.1:1.5];
+% u1_u2 = [1.0];
 N = length(u1_u2);
 X = zeros(5,N);
 x0 = [0 0 25 800 800];
